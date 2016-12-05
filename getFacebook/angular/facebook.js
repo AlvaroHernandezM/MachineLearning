@@ -1,4 +1,7 @@
 app.run(['$window',	function($window, $scope) {	
+
+	$scope.membersUPTC = {};
+
 	$window.fbAsyncInit = function() {
 		FB.init({ 
 			appId: '1093188044136348',
@@ -18,7 +21,7 @@ app.run(['$window',	function($window, $scope) {
 				console.log('User cancelled login or did not fully authorize.');
 			}
 		}, {scope: ''});
-
+		
 		function getMembers(access_token){
 			FB.api(
 			'/5347104545/members',
