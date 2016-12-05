@@ -1,4 +1,4 @@
-app.run(['$window',	function($window) {	
+app.run(['$window',	function($window, $scope) {	
 	$window.fbAsyncInit = function() {
 		FB.init({ 
 			appId: '1093188044136348',
@@ -17,14 +17,6 @@ app.run(['$window',	function($window) {
 				console.log('User cancelled login or did not fully authorize.');
 			}
 		}, {scope: ''});
-
-		$scope.getMembers = function() {
-			facebookService.getMembers() 
-			.then(function(response) {
-				$scope.members = response;
-			}
-			);
-		};
 	};	
 }]);
 

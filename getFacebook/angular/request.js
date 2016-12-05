@@ -7,6 +7,14 @@ app.controller('controller',function($scope,$http){
 		
 	}
 
+	$scope.getMembers = function() {
+		facebookService.getMembers() 
+		.then(function(response) {
+			$scope.members = response;
+		}
+		);
+	};
+
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
 	function detectFace(img){
 		var data = {
