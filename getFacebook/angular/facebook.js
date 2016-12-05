@@ -12,21 +12,22 @@ app.run(['$window',	function($window) {
 			if (response.authResponse) {
 				var access_token =   FB.getAuthResponse()['accessToken'];
 				console.log('Access Token = '+ access_token);
-				FB.api('/me', function(response) {
-					console.log('Good to see you, ' + response.name + '.');
-				});
+				$scope.getMembers();
+				console.log($scope.membersUPTC);
 			} else {
 				console.log('User cancelled login or did not fully authorize.');
 			}
 		}, {scope: ''});
 
-		FB.api(
+		$scope.getMembers = function(){
+			FB.api(
 			'/5347104545/members',
 			'GET',
 			{"fields":"name,link,picture.type(large)"},
 			function(response) {
-				console.log(response);
+				$scope.membersUPTC = response;
 			}, {access_token: access_token});
+		};
 	};	
 }]);
 
