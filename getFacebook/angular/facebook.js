@@ -8,7 +8,7 @@ app.run( function( $rootScope ) {
      var firstScriptElement = document.getElementsByTagName('script')[0];
      var facebookJS = document.createElement('script'); 
      facebookJS.id = 'facebook-jssdk';
-     facebookJS.src = '//connect.facebook.net/en_US/sdk.js';
+     facebookJS.src = 'https://connect.facebook.net/en_US/sdk.js';
      firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
    }());
 });

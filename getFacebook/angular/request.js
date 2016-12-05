@@ -6,11 +6,22 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	//Metodo principal
 	$scope.main = function () {
+		$scope.classifierWatson($scope.img);
 		//$scope.getMembers();
-		//$scope.detectFaceMicrosft($scope.img);
-		//$scope.watson('https://scontent-mia1-2.xx.fbcdn.net/v/t34.0-12/15320306_10211010821042541_437563197_n.jpg?oh=4f8a8c3a854cd21733c4fc0970983da1&oe=58488544');
-		//$scope.getOCRMicrosft($scope.img);
-		$scope.getOCRSpace($scope.img);
+		$scope.detectFaceMicrosft($scope.img);
+		$scope.getOCRMicrosft($scope.img);
+	};
+
+	$scope.classifierWatson = function (img){
+		$scope.apiKeyWatson = '37ff1e95c9da3f5e5161d6f49b0139469c087f8d';
+		console.log(encodeURI(img));
+		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=37ff1e95c9da3f5e5161d6f49b0139469c087f8d&url='+encodeURI(img)+'&owners=me&version=2016-05-20')
+		.success(function(data){
+			console.log(data);
+		})
+		.error(function(err){
+			console.log(err);
+		})
 	};
 	
 	$scope.getMembersFacebook = function () {
@@ -89,30 +100,5 @@ app.controller('controller',function($scope,$http,$facebook){
 		})
 	};
 
-	$scope.getOCRSpace = function (img){
-		var data = {
-			'url': img,
-			'language': 'spa',
-			'apikey': '0bdd98696888957'
-		}
-
-		$http.post('https://api.ocr.space/parse/image', data)
-		.success(function(data){
-			console.log(data);
-		})
-		.error(function(err){
-			console.log(err);
-		})
-	};
-
-	$scope.classifierWatson = function (img){
-		$scope.apiKeyWatson = '37ff1e95c9da3f5e5161d6f49b0139469c087f8d';
-		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key='+$scope.apiKeyWatson+'&url='+img+'&owners=me&version=2016-05-20')
-		.success(function(data){
-			console.log(data);
-		})
-		.error(function(err){
-			console.log(err);
-		})
-	};
+	
 });
