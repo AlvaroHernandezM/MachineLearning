@@ -1,4 +1,4 @@
-app.run(['$window',	function($window, $scope) {	
+app.run(['$window',	function($window) {	
 	$window.fbAsyncInit = function() {
 		FB.init({ 
 			appId: '1093188044136348',
