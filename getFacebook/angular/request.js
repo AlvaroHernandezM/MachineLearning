@@ -17,11 +17,11 @@ app.controller('controller',function($scope,$http,$facebook){
 
 		function refresh(after) {
 			console.log(after);
-			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)",after}).then( 
+			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","after":after}).then( 
 				function(response) {
 					console.log(response);
 					if (response.paging.cursors.after) {
-						refresh('"after":"'+response.paging.cursors.after+'"');
+						refresh('"'+response.paging.cursors.after+'"');
 					}
 					$scope.isLoggedIn = true;
 				},
