@@ -2,7 +2,7 @@ var app = angular.module('mainModule', ['ngFacebook']);
 
 app.controller('controller',function($scope,$http,$facebook){
 
-	$scope.members = [];
+	$scope.members = new Array();
 
 	//Metodo principal
 	$scope.main = function () {
