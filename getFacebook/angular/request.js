@@ -1,18 +1,10 @@
-var app = angular.module('mainModule', []);
+var app = angular.module('mainModule', ['ngFacebook']);
 
 app.controller('controller',function($scope,$http){
 
 	//Metodo principal
 	$scope.main = function () {
-		$scope.getMembers();
-	}
 
-	$scope.getMembers = function() {
-		facebookService.getMembers() 
-		.then(function(response) {
-			$scope.members = response;
-		}
-		);
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
@@ -36,5 +28,5 @@ app.controller('controller',function($scope,$http){
 		.error(function(err){
 			console.log(err);
 		})
-	}
+	};
 });

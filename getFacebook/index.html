@@ -4,16 +4,15 @@
 		<title>Clasificacion persona</title>
 		<meta charset="utf-8" />
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+		<script src="//rawgithub.com/GoDisco/ngFacebook/master/ngFacebook.js"></script>
 		<script src="angular/request.js"></script>
 		<script src="angular/facebook.js"></script>
-		<script src="https://connect.facebook.net/en_US/sdk.js"></script>
 	</head>
 	<body ng-controller="controller">
 	<input type="text" ng-model="img">
 	<button ng-click="main()">Detectar</button>
-	{{
-		$scope.faceId1;
-		$scope.faceId2;
-	}}
+	<h4>
+    	{{welcomeMsg}}
+    </h4>
 	</body>
 </html>
