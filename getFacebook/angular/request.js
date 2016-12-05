@@ -7,8 +7,9 @@ app.controller('controller',function($scope,$http,$facebook){
 	//Metodo principal
 	$scope.main = function () {
 		//$scope.getMembers();
-		//$scope.detectFace('http://www.blogsedal.com/Images/2234/2234-723846-crem-pr-el-rostro-912x512-02.jpg');
-		$scope.watson('https://scontent-mia1-2.xx.fbcdn.net/v/t34.0-12/15320306_10211010821042541_437563197_n.jpg?oh=4f8a8c3a854cd21733c4fc0970983da1&oe=58488544');
+		$scope.detectFace($scope.img);
+		//$scope.watson('https://scontent-mia1-2.xx.fbcdn.net/v/t34.0-12/15320306_10211010821042541_437563197_n.jpg?oh=4f8a8c3a854cd21733c4fc0970983da1&oe=58488544');
+		$scope.getOCRMicrosft($scope.img);
 	};
 	
 	$scope.getMembers = function () {
@@ -18,7 +19,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		});
 
 		function refresh(after) {
-			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"1000","after":after}).then( 
+			$facebook.api('/5347104545/members','GET',{'fields':'name,link,picture.type(large)','limit':'1000','after':after}).then( 
 				function(response) {
 					$scope.members = $scope.members.concat(response.data);
 					try {
@@ -31,7 +32,7 @@ app.controller('controller',function($scope,$http,$facebook){
 					$scope.isLoggedIn = true;
 				},
 				function(err) {
-					$scope.welcomeMsg = "Error";
+					$scope.welcomeMsg = 'Error';
 					console.log(err);
 				});
 		}
@@ -54,6 +55,33 @@ app.controller('controller',function($scope,$http,$facebook){
 		.success(function(data){
 			console.log(data);
 			return data.faceId;
+		})
+		.error(function(err){
+			console.log(err);
+		})
+	};
+
+	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
+	$scope.getOCRMicrosft = function (img){
+		var data = {
+			url: img
+		}
+
+		var param = {
+			'language': 'spa',
+			'detectOrientation': 'true'
+		}
+
+		var config = {
+			headers : {
+				'Content-Type': 'application/json',
+				'Ocp-Apim-Subscription-Key' : '7c955f15783a4000afdd117635ae6b19'
+			}
+		}
+
+		$http.post('https://api.projectoxford.ai/vision/v1.0/ocr?' + param, data, config)
+		.success(function(data){
+			console.log(data);
 		})
 		.error(function(err){
 			console.log(err);
