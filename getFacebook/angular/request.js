@@ -6,12 +6,10 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	//Metodo principal
 	$scope.main = function () {
-		$scope.getMembers();
-
-		$scope.detectFace('http://www.blogsedal.com/Images/2234/2234-723846-crem-pr-el-rostro-912x512-02.jpg');
+		//$scope.getMembers();
+		//$scope.detectFace('http://www.blogsedal.com/Images/2234/2234-723846-crem-pr-el-rostro-912x512-02.jpg');
+		$scope.watson();
 	};
-
-
 	
 	$scope.getMembers = function () {
 		$scope.isLoggedIn = false;
@@ -56,6 +54,16 @@ app.controller('controller',function($scope,$http,$facebook){
 		.success(function(data){
 			console.log(data);
 			return data.faceId;
+		})
+		.error(function(err){
+			console.log(err);
+		})
+	};
+
+	$scope.watson = function (){
+		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=37ff1e95c9da3f5e5161d6f49b0139469c087f8d&url=https%3A%2F%2Fscontent-mia1-2.xx.fbcdn.net%2Fv%2Ft34.0-12%2F15327550_10211547072255521_2026008890_n.jpg%3Foh%3Dde2807a23063390a95628815543e73e9%26oe%3D5847146E&owners=me&version=2016-05-20')
+		.success(function(data){
+			console.log(data);
 		})
 		.error(function(err){
 			console.log(err);
