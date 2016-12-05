@@ -22,7 +22,7 @@ app.controller('controller',function($scope,$http,$facebook){
 			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"500","after":after}).then( 
 				function(response) {
 					console.log(response);
-					$scope.members.push(response.data);
+					$scope.members = $scope.members.concat(response.data);
 					$scope.welcomeMsg = $scope.members.length;
 					if (response.paging.cursors.after) {
 						refresh(response.paging.cursors.after);
