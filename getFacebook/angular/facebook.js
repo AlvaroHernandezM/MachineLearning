@@ -12,21 +12,3 @@ app.run( function( $rootScope ) {
      firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
    }());
 });
-
-app.controller('controller',function($scope,$http,$facebook){  
-  $scope.isLoggedIn = false;
-  $facebook.login().then(function() {
-    refresh();
-  });
-
-  function refresh() {
-    $facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)"}).then( 
-      function(response) {
-        console.log(response);
-        $scope.isLoggedIn = true;
-      },
-      function(err) {
-        $scope.welcomeMsg = "Please log in";
-      });
-  }
-});
