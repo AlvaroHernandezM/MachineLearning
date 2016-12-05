@@ -8,6 +8,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		$scope.detectFace('http://www.blogsedal.com/Images/2234/2234-723846-crem-pr-el-rostro-912x512-02.jpg');
 	};
 
+
 	
 	$scope.facebook = function () {
 		$scope.isLoggedIn = false;
@@ -16,10 +17,11 @@ app.controller('controller',function($scope,$http,$facebook){
 		});
 
 		function refresh(after) {
-			console.log(after);
 			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"500","after":after}).then( 
 				function(response) {
 					console.log(response);
+					$scope.members.push(response.data);
+					$scope.welcomeMsg = members.length;
 					if (response.paging.cursors.after) {
 						refresh(response.paging.cursors.after);
 					}
