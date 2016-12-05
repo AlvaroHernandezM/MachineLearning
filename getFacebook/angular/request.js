@@ -27,6 +27,7 @@ app.controller('controller',function($scope,$http,$facebook){
 				},
 				function(err) {
 					$scope.welcomeMsg = "Please log in";
+					console.log(err);
 				});
 		}
 	};
