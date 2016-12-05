@@ -6,13 +6,14 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	//Metodo principal
 	$scope.main = function () {
-		$scope.facebook();
+		$scope.getMembers();
+
 		$scope.detectFace('http://www.blogsedal.com/Images/2234/2234-723846-crem-pr-el-rostro-912x512-02.jpg');
 	};
 
 
 	
-	$scope.facebook = function () {
+	$scope.getMembers = function () {
 		$scope.isLoggedIn = false;
 		$facebook.login().then(function() {
 			refresh('');
@@ -22,7 +23,6 @@ app.controller('controller',function($scope,$http,$facebook){
 			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"1000","after":after}).then( 
 				function(response) {
 					$scope.members = $scope.members.concat(response.data);
-					$scope.welcomeMsg = $scope.members.length;
 					try {
 						refresh(response.paging.cursors.after);
 					}
