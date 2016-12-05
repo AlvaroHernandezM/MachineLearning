@@ -62,7 +62,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.watson = function (img){
 		$scope.apiKeyWatson = '37ff1e95c9da3f5e5161d6f49b0139469c087f8d';
-		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key='+apiKeyWatson+'&url='+img+'&owners=me&version=2016-05-20')
+		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key='+$scope.apiKeyWatson+'&url='+img+'&owners=me&version=2016-05-20')
 		.success(function(data){
 			console.log(data);
 		})
