@@ -12,7 +12,8 @@ app.controller('controller',function($scope,$http,$facebook){
 		function refresh() {
 			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)"}).then( 
 				function(response) {
-					$scope.welcomeMsg = "Welcome " + response.name;
+					console.log(response);
+					$scope.welcomeMsg = "Welcome " + response;
 					$scope.isLoggedIn = true;
 				},
 				function(err) {
