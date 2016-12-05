@@ -15,12 +15,12 @@ app.controller('controller',function($scope,$http,$facebook){
 			refresh('');
 		});
 
-		function refresh(next) {
-			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)"+next}).then( 
+		function refresh(after) {
+			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)",after}).then( 
 				function(response) {
 					console.log(response);
 					if (response.paging.cursors.after) {
-						refresh('&after='+response.paging.cursors.after);
+						refresh('"after":"response.paging.cursors.after"');
 					}
 					$scope.isLoggedIn = true;
 				},
