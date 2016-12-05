@@ -4,7 +4,7 @@ app.controller('controller',function($scope,$http){
 
 	//Metodo principal
 	$scope.main = function () {
-		
+		$scope.getMembers();
 	}
 
 	$scope.getMembers = function() {
