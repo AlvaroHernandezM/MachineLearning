@@ -32,6 +32,7 @@ var DemoCtrl = function ($scope, $facebook) {
   });
   
   function refresh() {
+    console.log('hola');
     $facebook.api("/me").then( 
       function(response) {
         $scope.welcomeMsg = "Welcome " + response.name;
