@@ -4,24 +4,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	//Metodo principal
 	$scope.main = function () {
-		$scope.isLoggedIn = false;
-		$facebook.login().then(function() {
-			refresh();
-		});
-
-		function refresh() {
-			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)"}).then( 
-				function(response) {
-					console.log(response);
-					$scope.welcomeMsg = "Welcome " + response;
-					$scope.isLoggedIn = true;
-				},
-				function(err) {
-					$scope.welcomeMsg = "Please log in";
-				});
-		}
-
-		refresh();
+		
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
