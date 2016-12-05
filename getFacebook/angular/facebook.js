@@ -12,14 +12,14 @@ app.run(['$window',	function($window, $scope) {
 			if (response.authResponse) {
 				var access_token =   FB.getAuthResponse()['accessToken'];
 				console.log('Access Token = '+ access_token);
-				getMembers();
+				getMembers(access_token);
 				console.log($scope.membersUPTC);
 			} else {
 				console.log('User cancelled login or did not fully authorize.');
 			}
 		}, {scope: ''});
 
-		function getMembers(){
+		function getMembers(access_token){
 			FB.api(
 			'/5347104545/members',
 			'GET',
