@@ -21,19 +21,19 @@ app.controller('controller',function($scope,$http,$facebook){
 		function refresh(after) {
 			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"1000","after":after}).then( 
 				function(response) {
-					console.log(response);
 					$scope.members = $scope.members.concat(response.data);
 					$scope.welcomeMsg = $scope.members.length;
 					try {
 						refresh(response.paging.cursors.after);
 					}
 					catch(e){
-						break;
+						console.log('Total miembros: ' + $scope.members.length);
+						console.log($scope.members);
 					}
 					$scope.isLoggedIn = true;
 				},
 				function(err) {
-					$scope.welcomeMsg = "Please log in";
+					$scope.welcomeMsg = "Error";
 					console.log(err);
 				});
 		}
