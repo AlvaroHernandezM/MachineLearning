@@ -1,7 +1,4 @@
-app.run(['$window',	function($window, $scope) {	
-
-	$scope.membersUPTC = {};
-
+app.run(['$window',	function($window) {	
 	$window.fbAsyncInit = function() {
 		FB.init({ 
 			appId: '1093188044136348',
@@ -15,23 +12,41 @@ app.run(['$window',	function($window, $scope) {
 			if (response.authResponse) {
 				var access_token =   FB.getAuthResponse()['accessToken'];
 				console.log('Access Token = '+ access_token);
-				getMembers(access_token);
-				console.log($scope.membersUPTC);
+				$scope.getMembers();
 			} else {
 				console.log('User cancelled login or did not fully authorize.');
 			}
 		}, {scope: ''});
-		
-		function getMembers(access_token){
-			FB.api(
-			'/5347104545/members',
-			'GET',
-			{"fields":"name,link,picture.type(large)"},
-			function(response) {
-				$scope.membersUPTC = response;
-			}, {access_token: access_token});
+
+		$scope.getMembers = function() {
+			facebookService.getMembers() 
+			.then(function(response) {
+				$scope.members = response;
+			}
+			);
 		};
 	};	
 }]);
+
+
+app.factory('facebookService', function($q) {
+	return {
+		getMembers: function() {
+			var deferred = $q.defer();
+			FB.api(
+				'/5347104545/members',
+				'GET',
+				{"fields":"name,link,picture.type(large)"},
+				function(response) {
+					if (!response || response.error) {
+						deferred.reject('Error occured');
+					} else {
+						deferred.resolve(response);
+					}
+				},{access_token: access_token});
+			return deferred.promise;
+		}
+	}
+});
 
 
