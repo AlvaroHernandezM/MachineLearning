@@ -12,7 +12,7 @@ app.controller('controller',function($scope,$http,$facebook){
 	$scope.facebook = function () {
 		$scope.isLoggedIn = false;
 		$facebook.login().then(function() {
-			refresh('');
+			refresh('"after":"MjMzMjQ3MDk3MTExMzYx"');
 		});
 
 		function refresh(after) {
