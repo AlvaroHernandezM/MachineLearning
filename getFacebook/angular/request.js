@@ -17,7 +17,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 		function refresh(after) {
 			console.log(after);
-			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"1000","after":after}).then( 
+			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"500","after":after}).then( 
 				function(response) {
 					console.log(response);
 					if (response.paging.cursors.after) {
