@@ -8,7 +8,7 @@ app.controller('controller',function($scope,$http,$facebook){
 	$scope.main = function () {
 		//$scope.getMembers();
 		//$scope.detectFace('http://www.blogsedal.com/Images/2234/2234-723846-crem-pr-el-rostro-912x512-02.jpg');
-		$scope.watson();
+		$scope.watson('https://scontent-mia1-2.xx.fbcdn.net/v/t34.0-12/15320306_10211010821042541_437563197_n.jpg?oh=4f8a8c3a854cd21733c4fc0970983da1&oe=58488544');
 	};
 	
 	$scope.getMembers = function () {
@@ -60,8 +60,9 @@ app.controller('controller',function($scope,$http,$facebook){
 		})
 	};
 
-	$scope.watson = function (){
-		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=37ff1e95c9da3f5e5161d6f49b0139469c087f8d&url=https%3A%2F%2Fscontent-mia1-2.xx.fbcdn.net%2Fv%2Ft34.0-12%2F15327550_10211547072255521_2026008890_n.jpg%3Foh%3Dde2807a23063390a95628815543e73e9%26oe%3D5847146E&owners=me&version=2016-05-20')
+	$scope.watson = function (img){
+		$scope.apiKeyWatson = '37ff1e95c9da3f5e5161d6f49b0139469c087f8d';
+		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key='+apiKeyWatson+'&url='+img+'&owners=me&version=2016-05-20')
 		.success(function(data){
 			console.log(data);
 		})
