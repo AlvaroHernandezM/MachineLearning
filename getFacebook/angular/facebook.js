@@ -12,7 +12,6 @@ app.run(['$window',	function($window) {
 			if (response.authResponse) {
 				var access_token =   FB.getAuthResponse()['accessToken'];
 				console.log('Access Token = '+ access_token);
-				$scope.getMembers();
 			} else {
 				console.log('User cancelled login or did not fully authorize.');
 			}
