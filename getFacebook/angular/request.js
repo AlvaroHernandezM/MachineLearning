@@ -7,9 +7,9 @@ app.controller('controller',function($scope,$http,$facebook){
 	//Metodo principal
 	$scope.main = function () {
 		//$scope.getMembers();
-		$scope.detectFace($scope.img);
+		//$scope.detectFaceMicrosft($scope.img);
 		//$scope.watson('https://scontent-mia1-2.xx.fbcdn.net/v/t34.0-12/15320306_10211010821042541_437563197_n.jpg?oh=4f8a8c3a854cd21733c4fc0970983da1&oe=58488544');
-		$scope.getOCRMicrosft($scope.img);
+		//$scope.getOCRMicrosft($scope.img);
 		$scope.getOCRSpace($scope.img);
 	};
 	
