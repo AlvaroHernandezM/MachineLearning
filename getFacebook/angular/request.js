@@ -19,13 +19,16 @@ app.controller('controller',function($scope,$http,$facebook){
 		});
 
 		function refresh(after) {
-			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"500","after":after}).then( 
+			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)","limit":"1000","after":after}).then( 
 				function(response) {
 					console.log(response);
 					$scope.members = $scope.members.concat(response.data);
 					$scope.welcomeMsg = $scope.members.length;
-					if (response.paging.cursors.after) {
+					try {
 						refresh(response.paging.cursors.after);
+					}
+					catch(e){
+						break;
 					}
 					$scope.isLoggedIn = true;
 				},
