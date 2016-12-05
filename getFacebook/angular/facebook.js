@@ -23,7 +23,6 @@ app.controller('controller',function($scope,$http,$facebook){
     $facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)"}).then( 
       function(response) {
         console.log(response);
-        $scope.welcomeMsg = "Welcome " + response;
         $scope.isLoggedIn = true;
       },
       function(err) {

@@ -4,7 +4,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	//Metodo principal
 	$scope.main = function () {
-		
+		detectFace('http://www.blogsedal.com/Images/2234/2234-723846-crem-pr-el-rostro-912x512-02.jpg');
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
