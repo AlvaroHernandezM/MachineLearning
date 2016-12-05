@@ -12,13 +12,16 @@ app.controller('controller',function($scope,$http,$facebook){
 	$scope.facebook = function () {
 		$scope.isLoggedIn = false;
 		$facebook.login().then(function() {
-			refresh();
+			refresh('');
 		});
 
-		function refresh() {
-			$facebook.api('/5347104545/members','POST',{"fields":"name,link,picture.type(large)"}).then( 
+		function refresh(next) {
+			$facebook.api('/5347104545/members','GET',{"fields":"name,link,picture.type(large)"+next}).then( 
 				function(response) {
 					console.log(response);
+					if (response.paging.after) {
+						refresh('&after='+response.paging.after);
+					}
 					$scope.isLoggedIn = true;
 				},
 				function(err) {
