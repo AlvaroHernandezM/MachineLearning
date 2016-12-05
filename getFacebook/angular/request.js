@@ -1,10 +1,27 @@
 var app = angular.module('mainModule', ['ngFacebook']);
 
-app.controller('controller',function($scope,$http){
+app.controller('controller',function($scope,$http,$facebook){
 
 	//Metodo principal
 	$scope.main = function () {
+		$scope.isLoggedIn = false;
+		$facebook.login().then(function() {
+			refresh();
+		});
 
+		function refresh() {
+			console.log('hola');
+			$facebook.api("/me").then( 
+				function(response) {
+					$scope.welcomeMsg = "Welcome " + response.name;
+					$scope.isLoggedIn = true;
+				},
+				function(err) {
+					$scope.welcomeMsg = "Please log in";
+				});
+		}
+
+		refresh();
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.

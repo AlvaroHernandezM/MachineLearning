@@ -21,27 +21,4 @@ app.run( function( $rootScope ) {
      // Insert the Facebook JS SDK into the DOM
      firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
    }());
-})
-
-;
-
-var DemoCtrl = function ($scope, $facebook) {
-  $scope.isLoggedIn = false;
-  $facebook.login().then(function() {
-    refresh();
-  });
-  
-  function refresh() {
-    console.log('hola');
-    $facebook.api("/me").then( 
-      function(response) {
-        $scope.welcomeMsg = "Welcome " + response.name;
-        $scope.isLoggedIn = true;
-      },
-      function(err) {
-        $scope.welcomeMsg = "Please log in";
-      });
-  }
-  
-  refresh();
-};
+});
