@@ -21,7 +21,7 @@ app.controller('controller',function($scope,$http,$facebook){
 				function(response) {
 					console.log(response);
 					if (response.paging.cursors.after) {
-						refresh("after:"+response.paging.cursors.after);
+						refresh('"after":"'+response.paging.cursors.after+'"');
 					}
 					$scope.isLoggedIn = true;
 				},
