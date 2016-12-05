@@ -27,11 +27,10 @@ app.run( function( $rootScope ) {
 
 var DemoCtrl = function ($scope, $facebook) {
   $scope.isLoggedIn = false;
-  function() {
-    $facebook.login().then(function() {
-      refresh();
-    });
-  }
+  $facebook.login().then(function() {
+    refresh();
+  });
+  
   function refresh() {
     $facebook.api("/me").then( 
       function(response) {
