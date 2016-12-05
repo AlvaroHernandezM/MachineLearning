@@ -1,4 +1,15 @@
 app.run(['$window',	function($window, $scope) {	
+	
+	$scope.getMembers = function(){
+		FB.api(
+			'/5347104545/members',
+			'GET',
+			{"fields":"name,link,picture.type(large)"},
+			function(response) {
+				$scope.membersUPTC = response;
+			}, {access_token: access_token});
+	};
+
 	$window.fbAsyncInit = function() {
 		FB.init({ 
 			appId: '1093188044136348',
@@ -18,16 +29,6 @@ app.run(['$window',	function($window, $scope) {
 				console.log('User cancelled login or did not fully authorize.');
 			}
 		}, {scope: ''});
-
-		$scope.getMembers = function(){
-			FB.api(
-			'/5347104545/members',
-			'GET',
-			{"fields":"name,link,picture.type(large)"},
-			function(response) {
-				$scope.membersUPTC = response;
-			}, {access_token: access_token});
-		};
 	};	
 }]);
 
