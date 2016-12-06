@@ -13,19 +13,14 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.classifierWatson = function (img){
 		var apiKeyWatson = '37ff1e95c9da3f5e5161d6f49b0139469c087f8d';
-		var threshold = '0.05'; //puntaje minimo para traer la respuesta
+		var threshold = '0.1'; //puntaje minimo para traer la respuesta
 		var owners = 'me'; //utiliza los clasificadores de
 		var version = '2016-05-20';
-		//urls funcionando:
-		//https%3A%2F%2Ffb-s-a-a.akamaihd.net%2Fh-ak-xpf1%2Fv%2Ft34.0-12%2F15400993_10211556462330267_4927781756354383261_n.jpg%3Foh%3D9b95b6ddeb0f85d12c34c3ed34f95eb4%26oe%3D584807DE%26__gda__%3D1481197555_fa4c46bda8fbc16d6a6ab1ec25fea9c4
-		//https%3A%2F%2Ffb-s-c-a.akamaihd.net%2Fh-ak-xpa1%2Fv%2Ft34.0-12%2F15350645_10211556247604899_6714770042266764987_n.jpg%3Foh%3D6980550a809d62337407d9fc3d3ba136%26oe%3D5849473C%26__gda__%3D1481195213_8a8d059ae6f61d1987c1c275a6307724
-		//https%3A%2F%2Fscontent-atl3-1.xx.fbcdn.net%2Fv%2Ft34.0-12%2F15285094_10211556245244840_802085943704274960_n.jpg%3Foh%3D373f73a57cd8b7b25833862ac0c4eddf%26oe%3D58493247
-		//usadndo esta varibale mientras tanto
 		$scope.classifier='cargando imagen....';
 		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=' + apiKeyWatson + '&url=' + encodeURL(img) + '&owners='+owners+'&threshold='+ threshold +'&version='+ version).
 		success(function(data){
-			if(data.custom_classes>0){ //verificando que encontro clases
-				$scope.classifier=' se han encontrado: '+data.custom_classes+' clases';
+			if(data.images[0].classifiers.length>0){ //verificando que encontro clases
+				$scope.classifier=' se han encontrado: '+data.images[0].classifiers+' clases';
 				$classes = data.images[0].classifiers[0].classes;
 				$classes.forEach(function (classe){ //monstrando las clases
 					$scope.classifier = $scope.classifier+'  - clase: '+classe.class+' - puntaje: '+classe.score;
@@ -82,11 +77,12 @@ app.controller('controller',function($scope,$http,$facebook){
 				//filtrando el texto  que ingresa
 				var filterWords = $scope.txtMicrosoft.split('-');
 				for (var i = filterWords.length - 1; i >= 0; i--) {
-					if (filterWords[i].length<3||filterWords[i].match(/uptc/)||filterWords[i].match(/cod/)||filterWords[i].match(/edu/)||filterWords[i].match(/www/)||filterWords[i].match(/[0-9]/)) { //el texto
+					if (filterWords[i].length<3||filterWords[i].match(/uptc/)||filterWords[i].match(/cod/)||filterWords[i].match(/edu/)||filterWords[i].match(/www/)||filterWords[i].match(/[0-9]/)||filterWords[i].match(/ypțę/)) { //el texto
 						filterWords.splice(i, 1);
 					}
 				}
 				$scope.filterMicrosoft = filterWords;
+				$scope.getMembersFacebook();
 			} else {
 				$scope.txtMicrosoft = 'no se ha podido identificar ni extraer el texto de la imagen';
 			}
@@ -101,7 +97,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 
 	$scope.getMembersFacebook = function () {
-		$scope.isLoggedIn = false;
+		$scope.numMembersFacebook = 'Obteniendo miembros facebook...';
 		$facebook.login().then(function() {
 			refresh('');
 		});
@@ -114,10 +110,10 @@ app.controller('controller',function($scope,$http,$facebook){
 						refresh(response.paging.cursors.after);
 					}
 					catch(e){
-						console.log('Total miembros: ' + $scope.members.length);
-						console.log($scope.members);
+						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;						$scope.MembersFacebook
+						$scope.classifierMembersFacebook();
+
 					}
-					$scope.isLoggedIn = true;
 				},
 				function(err) {
 					$scope.welcomeMsg = 'Error';
