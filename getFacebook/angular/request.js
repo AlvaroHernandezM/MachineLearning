@@ -21,10 +21,8 @@ app.controller('controller',function($scope,$http,$facebook){
 		//https%3A%2F%2Ffb-s-c-a.akamaihd.net%2Fh-ak-xpa1%2Fv%2Ft34.0-12%2F15350645_10211556247604899_6714770042266764987_n.jpg%3Foh%3D6980550a809d62337407d9fc3d3ba136%26oe%3D5849473C%26__gda__%3D1481195213_8a8d059ae6f61d1987c1c275a6307724
 		//https%3A%2F%2Fscontent-atl3-1.xx.fbcdn.net%2Fv%2Ft34.0-12%2F15285094_10211556245244840_802085943704274960_n.jpg%3Foh%3D373f73a57cd8b7b25833862ac0c4eddf%26oe%3D58493247
 		//usadndo esta varibale mientras tanto
-		$scope.img2 = 'https%3A%2F%2Fscontent-atl3-1.xx.fbcdn.net%2Fv%2Ft34.0-12%2F15285094_10211556245244840_802085943704274960_n.jpg%3Foh%3D373f73a57cd8b7b25833862ac0c4eddf%26oe%3D58493247';
-		   	
-    	$scope.classifier='cargando imagen....';
-		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=' + apiKeyWatson + '&url=' + $scope.img2 + '&owners='+owners+'&threshold='+ threshold +'&version='+ version).
+		$scope.classifier='cargando imagen....';
+		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=' + apiKeyWatson + '&url=' + encodeURL(img) + '&owners='+owners+'&threshold='+ threshold +'&version='+ version).
 		success(function(data){
 			if(data.custom_classes>0){ //verificando que encontro clases
 				$scope.classifier=' se han encontrado: '+data.custom_classes+' clases';
