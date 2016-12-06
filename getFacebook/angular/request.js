@@ -4,10 +4,12 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.members = new Array();
 
+
 	//Metodo principal
 	$scope.main = function () {
 	    //llamando a Watson
 		$scope.classifierWatson($scope.img);
+		$scope.l = $scope.img;
 	
 	};
 
