@@ -78,16 +78,35 @@ app.controller('controller',function($scope,$http,$facebook){
 			var regions = data.regions;
 			if(regions.length>0){
 				$scope.lines = data.regions[0].lines;
-				$scope.txtMicrosoft = 'se han encontrado: '+$scope.lines.length+' palabras';
+				$scope.txtMicrosoft = '';
+				var index = 0;
 				$scope.lines.forEach(function(line){
 					line.words.forEach(function(text){						
 						//text.forEach(function(word){
-						if (text.text != 'undefined'){
-							$scope.txtMicrosoft =  $scope.txtMicrosoft + ' - ' + text.text;
+						if (index == 0){
+							var str=text.text.toLowerCase().replace(' ','').replace(/\./g,'');
+							$scope.txtMicrosoft =  str;
+						} else {
+							var str=text.text.toLowerCase().replace(' ','').replace(/\./g,'');
+							$scope.txtMicrosoft =  $scope.txtMicrosoft + '-' + str;
 						}
+						index++;
 						//});
 					});
 				});
+				var filterWords = $scope.txtMicrosoft.split('-');
+
+				//console.log(filterWords.length);
+
+				for (var i = filterWords.length - 1; i >= 0; i--) {
+					if (filterWords[i].length<3||filterWords[i].match(/uptc/)||filterWords[i].match(/cod/)||filterWords[i].match(/edu/)||filterWords[i].match(/www/)||filterWords[i].match(/[0-9]/)) { //el texto
+						filterWords.splice(i, 1);
+					}
+					
+				}
+				//console.log(filterWords);
+
+				$scope.filterMicrosoft = filterWords;
 			} else {
 				$scope.txtMicrosoft = 'no se ha podido identificar ni extraer el texto de la imagen';
 			}
