@@ -138,11 +138,11 @@ app.controller('controller',function($scope,$http,$facebook){
 				}
 			}
 		}
-		if ($scope.candidates.length === 1) {
+		if ($scope.candidates.length == 1) {
 			$scope.facebook = 'Enviando mensaje a ' + $scope.candidates[0].name;
 		}else{
-			$scope.classifierMembersFacebookPicture();
 			$scope.facebook = 'Clasificando por foto de perfil ...';
+			$scope.classifierMembersFacebookPicture();
 		}
 	};
 
@@ -203,7 +203,6 @@ app.controller('controller',function($scope,$http,$facebook){
 
 		$http.post('https://api.projectoxford.ai/face/v1.0/verify?', data, config)
 		.success(function(data){
-			console.log(data);
 			if (!data.isIdentical) {
 				delete $scope.candidates[index];
 			}
