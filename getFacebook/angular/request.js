@@ -1,6 +1,6 @@
 var app = angular.module('mainModule', ['ngFacebook', 'LocalStorageModule']);
 
-app.controller('controller',function($scope,$http,$facebook){
+app.controller('controller',function($scope,$http,$facebook,localStorageService){
 
 	$scope.members = new Array();
 
