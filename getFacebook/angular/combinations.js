@@ -1,17 +1,20 @@
-function combinations(str) {
-    var fn = function(active, rest, a) {
-        if (!active && !rest)
-            return;
-        if (!rest) {
-            a.push(active);
-        } else {
-            fn(active + rest[0], rest.slice(1), a);
-            fn(active, rest.slice(1), a);
-        }
-        return a;
-    }
-    return fn("", str, []);
-}
+function combinations(array) {
+    var combi = [];
+    var temp= "";
 
-var letters = ["larry", "mauricio", "portocarrero", "lopez"];
-combinations(letters);
+    var letLen = Math.pow(2, array.length);
+
+    for (var i = 0; i < letLen ; i++){
+        temp= "";
+        for (var j=0;j<array.length;j++) {
+            if ((i & Math.pow(2,j))){ 
+                temp += array[j] + " ";
+            }
+        }
+        if (temp !== "") {
+            combi.push(temp);
+        }
+    }
+
+    return combi.join("\n");
+}

@@ -112,16 +112,21 @@ app.controller('controller',function($scope,$http,$facebook){
 						refresh(response.paging.cursors.after);
 					}
 					catch(e){
-						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;						$scope.MembersFacebook
+						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;						
 						$scope.classifierMembersFacebook();
 
 					}
 				},
 				function(err) {
-					$scope.welcomeMsg = 'Error';
+					$scope.numMembersFacebook = 'Error';
 					console.log(err);
 				});
 		}
+	};
+
+	$scope.classifierMembersFacebook = function () {
+		console.log($scope.members);
+		console.log($scope.filterMicrosoft.sllice(-1));
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
