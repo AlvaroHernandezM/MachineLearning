@@ -4,6 +4,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.members = new Array();
 	$scope.candidates = new Array();
+	$scope.idGroup = '160626413991175'; //ING SISTEMAS
 
 
 	//Metodo principal
@@ -100,9 +101,6 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.getMembersFacebook = function () {
 		
-		$scope.idGroup = '5347104545'; //UPTC
-		//$scope.idGroup = '160626413991175'; //ING SISTEMAS
-
 		$facebook.login().then(function() {
 			refresh('');
 		});
