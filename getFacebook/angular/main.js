@@ -166,7 +166,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		var config = {
 			headers : {
 				'Content-Type': 'application/json',
-				'Ocp-Apim-Subscription-Key' : 'fe7560344bad462c8658412202e534b1'
+				'Ocp-Apim-Subscription-Key' : '07c4d54cefb847c999fde07d0ef6ca9e'
 			}
 		}
 
@@ -198,7 +198,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		var config = {
 			headers : {
 				'Content-Type': 'application/json',
-				'Ocp-Apim-Subscription-Key' : 'fe7560344bad462c8658412202e534b1'
+				'Ocp-Apim-Subscription-Key' : '07c4d54cefb847c999fde07d0ef6ca9e'
 			}
 		}
 
