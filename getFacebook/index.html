@@ -38,8 +38,8 @@
 		<p>Combinaciones de nombre: {{combinationsName}}</p>			
 		<p>Candidatos: {{candidates.length}}</p>
 		<ul>
-			<li ng-hide="{{candidate.length == 0}}" ng-repeat="candidate in candidates">
-				[{{$index + 1}}] {{candidate.name}} {{candidate.length}}
+			<li ng-hide="candidate === undefined" ng-repeat="candidate in candidates">
+				[{{$index + 1}}] {{candidate.name}}
 				<br>
 				<img ng-src="{{candidate.picture.data.url}}"/>
 			</li>

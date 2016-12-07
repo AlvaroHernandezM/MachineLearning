@@ -201,6 +201,7 @@ app.controller('controller',function($scope,$http,$facebook){
 			console.log(data);
 			if (!data.isIdentical) {
 				delete $scope.candidates[index];
+				console.log($scope.candidates);
 			}
 		})
 		.error(function(err){
