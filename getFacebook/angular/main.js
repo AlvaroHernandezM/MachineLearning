@@ -115,8 +115,8 @@ app.controller('controller',function($scope,$http,$facebook){
 						refresh(response.paging.cursors.after);
 					}
 					catch(e){
-						$scope.classifierMembersFacebookName();
 						$scope.facebook = 'Clasificando por nombre ...';
+						$scope.classifierMembersFacebookName();
 					}
 				},
 				function(err) {
