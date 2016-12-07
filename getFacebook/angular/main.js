@@ -165,10 +165,10 @@ app.controller('controller',function($scope,$http,$facebook){
 		.success(function(data){
 			console.log(data);
 			if (index < 0) {
-				$scope.faceId1 = data.faceId;
+				$scope.faceId1 = data[0].faceId;
 				console.log($scope.faceId1);
 			}else{
-				$scope.candidates[index].faceId = data.faceId;
+				$scope.candidates[index].faceId = data[0].faceId;
 				console.log($scope.candidates);
 			}
 		})
