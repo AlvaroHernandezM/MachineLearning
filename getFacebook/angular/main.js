@@ -125,15 +125,6 @@ app.controller('controller',function($scope,$http,$facebook){
 		console.log($scope.members);
 		$scope.name = $scope.filterMicrosoft.slice(0,4);
 		$scope.combinationsName = combinations($scope.name);
-		for (person in $scope.members) {
-			for (name in $scope.combinationsName) {
-				console.log(person.name + "==" + name);
-				if (person.name == name) {
-					$scope.posiblePerson.push(person);
-					console.log(person);
-				}
-			}
-		}
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
