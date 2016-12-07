@@ -119,7 +119,7 @@ app.controller('controller',function($scope,$http,$facebook,localStorageService)
 					}
 					catch(e){
 						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;
-						localStorageService.set("facebook",$scope.members);						
+						localStorageService.set("facebook","hola");						
 						$scope.classifierMembersFacebook();
 
 					}
@@ -133,7 +133,7 @@ app.controller('controller',function($scope,$http,$facebook,localStorageService)
 
 	$scope.classifierMembersFacebook = function () {
 		console.log($scope.members);
-		console.log($scope.filterMicrosoft.slice(-1));
+		console.log($scope.filterMicrosoft.slice(0,-2));
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
