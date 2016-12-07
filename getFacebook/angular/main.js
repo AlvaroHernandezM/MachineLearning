@@ -98,7 +98,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 
 	$scope.getMembersFacebook = function () {
-		$scope.numMembersFacebook = 'Obteniendo miembros facebook...';
+		$scope.name = 'Obteniendo miembros facebook ...';
 		$facebook.login().then(function() {
 			refresh('');
 		});
@@ -111,7 +111,6 @@ app.controller('controller',function($scope,$http,$facebook){
 						refresh(response.paging.cursors.after);
 					}
 					catch(e){
-						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;
 						$scope.classifierMembersFacebook();
 
 					}
@@ -126,9 +125,9 @@ app.controller('controller',function($scope,$http,$facebook){
 	$scope.classifierMembersFacebook = function () {
 		console.log($scope.members);
 		$scope.name = $scope.filterMicrosoft.slice(0,4);
-		$scope.combinationsNames = combinations($scope.name);
+		$scope.combinationsName = combinations($scope.name);
 		for (person in $scope.members) {
-			for (name in $scope.combinationsNames) {
+			for (name in $scope.combinationsName) {
 				if (person.name == name) {
 					$scope.posiblePerson.push(person);
 				}
