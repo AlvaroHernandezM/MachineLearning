@@ -102,7 +102,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 
 	$scope.getMembersFacebook = function () {
-		
+		$scope.facebook = 'Obteniendo miembros ...';
 		$facebook.login().then(function() {
 			refresh('');
 		});
@@ -116,7 +116,7 @@ app.controller('controller',function($scope,$http,$facebook){
 					}
 					catch(e){
 						$scope.classifierMembersFacebookName();
-
+						$scope.facebook = 'Clasificando por nombre ...';
 					}
 				},
 				function(err) {
@@ -138,7 +138,12 @@ app.controller('controller',function($scope,$http,$facebook){
 				}
 			}
 		}
-		$scope.classifierMembersFacebookPicture();
+		if ($scope.candidates.length === 1) {
+			$scope.facebook = 'Enviando mensaje a ' + $scope.candidates[0].name;
+		}else{
+			$scope.classifierMembersFacebookPicture();
+			$scope.facebook = 'Clasificando por foto de perfil ...';
+		}
 	};
 
 	$scope.classifierMembersFacebookPicture = function () {
@@ -201,7 +206,9 @@ app.controller('controller',function($scope,$http,$facebook){
 			console.log(data);
 			if (!data.isIdentical) {
 				delete $scope.candidates[index];
-				console.log($scope.candidates);
+			}
+			else{
+				$scope.facebook = 'Enviando mensaje a ' + $scope.candidates[index].name;
 			}
 		})
 		.error(function(err){
