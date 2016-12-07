@@ -126,15 +126,16 @@ app.controller('controller',function($scope,$http,$facebook){
 		console.log($scope.members);
 		$scope.name = $scope.filterMicrosoft.slice(0,4);
 		$scope.combinationsName = combinations($scope.name);
-		for (var i = $scope.members.length - 1; i >= 0; i--) {
+		console.log($scope.members[0].name.toLowerCase() +" == "+$scope.combinationsName[0]);
+		/*for (var i = $scope.members.length - 1; i >= 0; i--) {
 			for (var j = $scope.combinationsName.length - 1; j >= 0; j--) {
-				console.log($scope.members[i].name.toLowerCase() +" == "+$scope.combinationsName[j]);
 				if($scope.members[i].name.toLowerCase() == $scope.combinationsName[j])
 				{
 					$scope.candidates.push($scope.members[i]);
+					break;
 				}
 			}
-		}
+		}*/
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
