@@ -167,7 +167,7 @@ app.controller('controller',function($scope,$http,$facebook){
 				$scope.faceId1 = data.faceId;
 				console.log($scope.faceId1);
 			}else{
-				$scope.candidates[i].faceId = data.faceId;
+				$scope.candidates[index].faceId = data.faceId;
 				console.log($scope.candidates);
 			}
 		})
