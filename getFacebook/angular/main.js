@@ -142,9 +142,9 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.classifierMembersFacebookPicture = function () {
-		$scope.faceId1 = $scope.facedetectFaceMicrosft($scope.img);
+		$scope.faceId1 = $scope.detectFaceMicrosft($scope.img);
 		for (var i = $scope.candidates.length - 1; i >= 0; i--) {
-			$scope.candidates[i].faceId = $scope.facedetectFaceMicrosft($scope.candidates[i].picture.data.url);
+			$scope.candidates[i].faceId = $scope.detectFaceMicrosft($scope.candidates[i].picture.data.url);
 		}
 		console.log($scope.faceId1);
 		console.log($scope.candidates);
