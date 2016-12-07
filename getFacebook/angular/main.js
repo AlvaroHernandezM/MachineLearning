@@ -142,16 +142,14 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.classifierMembersFacebookPicture = function () {
-		$scope.faceId1 = $scope.detectFaceMicrosft($scope.img);
+		$scope.faceId1 = $scope.detectFaceMicrosft($scope.img,-1);
 		for (var i = $scope.candidates.length - 1; i >= 0; i--) {
-			$scope.candidates[i].faceId = $scope.detectFaceMicrosft($scope.candidates[i].picture.data.url);
+			$scope.detectFaceMicrosft($scope.candidates[i].picture.data.url,i);
 		}
-		console.log($scope.faceId1);
-		console.log($scope.candidates);
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
-	$scope.detectFaceMicrosft = function (img){
+	$scope.detectFaceMicrosft = function (img,index){
 		var data = {
 			url: img
 		}
@@ -165,7 +163,13 @@ app.controller('controller',function($scope,$http,$facebook){
 
 		$http.post('https://api.projectoxford.ai/face/v1.0/detect?', data, config)
 		.success(function(data){
-			return data.faceId;
+			if (index < 0) {
+				$scope.faceId1 = data.faceId;
+				console.log($scope.faceId1);
+			}else{
+				$scope.candidates[i].faceId = data.faceId;
+				console.log($scope.candidates);
+			}
 		})
 		.error(function(err){
 			console.log(err);
