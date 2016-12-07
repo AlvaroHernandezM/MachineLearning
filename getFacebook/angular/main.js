@@ -163,6 +163,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 		$http.post('https://api.projectoxford.ai/face/v1.0/detect?', data, config)
 		.success(function(data){
+			console.log(data);
 			if (index < 0) {
 				$scope.faceId1 = data.faceId;
 				console.log($scope.faceId1);
