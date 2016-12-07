@@ -2,8 +2,6 @@ var app = angular.module('mainModule', ['ngFacebook']);
 
 app.controller('controller',function($scope,$http,$facebook){
 
-	$scope.members = new Array();
-	$scope.candidates = new Array();
 	$scope.idGroup = '160626413991175'; //ING SISTEMAS
 
 
@@ -85,6 +83,8 @@ app.controller('controller',function($scope,$http,$facebook){
 					}
 				}
 				$scope.filterMicrosoft = filterWords;
+				$scope.members = new Array();
+				$scope.candidates = new Array();
 				$scope.getMembersFacebook();
 			} else {
 				$scope.txtMicrosoft = 'no se ha podido identificar ni extraer el texto de la imagen';
