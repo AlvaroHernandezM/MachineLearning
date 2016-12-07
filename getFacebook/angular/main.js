@@ -142,9 +142,11 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.classifierMembersFacebookPicture = function () {
-		$scope.faceId1 = $scope.detectFaceMicrosft($scope.img,-1);
-		for (var i = $scope.candidates.length - 1; i >= 0; i--) {
-			$scope.detectFaceMicrosft($scope.candidates[i].picture.data.url,i);
+		$scope.detectFaceMicrosft($scope.img,-1);
+		function detectFaceCandidates() {
+			for (var i = $scope.candidates.length - 1; i >= 0; i--) {
+				$scope.detectFaceMicrosft($scope.candidates[i].picture.data.url,i);
+			}
 		}
 	};
 
@@ -165,21 +167,23 @@ app.controller('controller',function($scope,$http,$facebook){
 		.success(function(data){
 			if (index < 0) {
 				$scope.faceId1 = data[0].faceId;
-				console.log($scope.faceId1);
+				detectFaceCandidates();
 			}else{
 				if (data.length == 0) {
 					$scope.candidates.splice(index,index);
 				}else{
 					$scope.candidates[index].faceId = data[0].faceId;
-					console.log($scope.candidates);
+					$scope.verifyFaceMicrosft($scope.faceId1, $scope.candidates[index].faceId);
 				}
-			}
-		})
+		}
+	})
 		.error(function(err){
 			console.log(err);
 		})
 	};
 
-	
+	$scope.verifyFaceMicrosft = function (faceId1, faceId2) {
+		console.log(faceId + " - " + faceId2);
+	};	
 	
 });
