@@ -1,6 +1,6 @@
-var app = angular.module('mainModule', ['ngFacebook', 'LocalStorageModule']);
+var app = angular.module('mainModule', ['ngFacebook']);
 
-app.controller('controller',function($scope,$http,$facebook,localStorageService){
+app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.members = new Array();
 
@@ -99,17 +99,10 @@ app.controller('controller',function($scope,$http,$facebook,localStorageService)
 
 	$scope.getMembersFacebook = function () {
 		$scope.numMembersFacebook = 'Obteniendo miembros facebook...';
-		if (localStorageService.get("facebook")){
-			$scope.members = localStorageService.get("facebook");
-			$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;
-			$scope.classifierMembersFacebook();
-		}
-		else{
-			$facebook.login().then(function() {
-				refresh('');
-			});
-		}
-		
+		$facebook.login().then(function() {
+			refresh('');
+		});
+
 		function refresh(after) {
 			$facebook.api('/5347104545/members','GET',{'fields':'name,link,picture.type(large)','limit':'1000','after':after}).then( 
 				function(response) {
@@ -119,7 +112,6 @@ app.controller('controller',function($scope,$http,$facebook,localStorageService)
 					}
 					catch(e){
 						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;
-						localStorageService.set("facebook",$scope.members[0]);
 						$scope.classifierMembersFacebook();
 
 					}
@@ -133,7 +125,7 @@ app.controller('controller',function($scope,$http,$facebook,localStorageService)
 
 	$scope.classifierMembersFacebook = function () {
 		console.log($scope.members);
-		console.log($scope.filterMicrosoft.slice(0,-2));
+		console.log($scope.filterMicrosoft.slice(0,4));
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
