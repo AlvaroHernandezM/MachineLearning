@@ -2,7 +2,7 @@ var app = angular.module('mainModule', ['ngFacebook']);
 
 app.controller('controller',function($scope,$http,$facebook){
 
-	$scope.idGroup = '160626413991175'; //ING SISTEMAS
+	$scope.idGroup = '5347104545'; //ING SISTEMAS
 
 
 	//Metodo principal
