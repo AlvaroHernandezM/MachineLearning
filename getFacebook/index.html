@@ -40,7 +40,7 @@
 		<p>Candidatos: {{candidates.length}}</p>
 		<ul>
 			<li ng-repeat="candidate in candidates track by $index">
-				[{{$index + 1}}] {{candidate.name}} [{{candidate.state}}]
+				[{{$index + 1}}] {{candidate.name}} <strong>[{{candidate.state}}]</strong>
 				<br>
 				<img ng-src="{{candidate.picture.data.url}}"/>
 			</li>
