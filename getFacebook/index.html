@@ -1,9 +1,19 @@
 <!DOCTYPE HTML>
-<html lang="es" ng-app="mainModule">
-<head>
-	<title>Clasificacion persona</title>
-	<meta charset="utf-8" />
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<!--
+	Highlights by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html ng-app="mainModule">
+	<head>
+		<title>Clasificador</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 	<script src="https://rawgithub.com/GoDisco/ngFacebook/master/ngFacebook.js"></script>
 
 	<script src="angular/main.js"></script>
@@ -12,12 +22,31 @@
 	<script src="angular/combinations.js"></script>
 	<script src="angular/cleanString.js"></script>
 	<script src="angular/facebook.js"></script>
-</head>
-<body ng-controller="controller">
-	<h1>Encuentra mi dueño</h1>
-	<label><input type="radio" ng-model="idGroup" value="160626413991175"> info. ing. de sistemas y computación (I.S.C)</label> 
+	</head>
+	<body ng-controller="controller">
+
+		<!-- Header -->
+			<section id="header">
+				<header class="major">
+					<h1>ENCUENTRA EL DUEÑO DE EL CARNÉ</h1>
+					<p>Ingresa la foto del carné que encontaste<a href=" http://www.vinhoverde.pt/pt/homepage"> </a></p> 
+					<a href="#one" class="goto-next scrolly">Next</a>
+				</header>
+			</section>
+		<!-- Three -->
+			<section id="one" class="main special">
+				<div class="container">
+					<span class="image fit primary"><img src="images/pic03.jpg" alt="" /></span>
+					<div class="content">
+						<header class="major">
+							<h2>Encuentra mi dueño</h2>
+						</header>
+	
+	<label> <input type="radio" ng-model="idGroup" value="160626413991175"> info. ing. de sistemas y computación (I.S.C) </label> 
 	<br>
+
 	<label><input type="radio" ng-model="idGroup" value="5347104545"> UPTC</label>
+	<br>
 	<br>
 	<br>
 	<input type="text" ng-model="img">
@@ -53,5 +82,30 @@
 		</ul>
 	</div>
 
-</body>
+					</div>
+					
+				</div>
+			</section>
+
+
+
+		<!-- Footer -->
+			<section id="footer">
+				<footer>
+					<ul class="copyright">
+						<li>Inteligencia Artificial.</li><li>Alvaro Hernandez - Larry Portocarrero - Katherine Velandia</li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>

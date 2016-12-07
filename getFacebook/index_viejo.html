@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="es" ng-app="mainModule">
+<head>
+	<title>Clasificacion persona</title>
+	<meta charset="utf-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="https://rawgithub.com/GoDisco/ngFacebook/master/ngFacebook.js"></script>
+
+	<script src="angular/main.js"></script>
+
+	<script src="angular/encodeURL.js"></script>
+	<script src="angular/combinations.js"></script>
+	<script src="angular/cleanString.js"></script>
+	<script src="angular/facebook.js"></script>
+</head>
+<body ng-controller="controller">
+	<h1>Encuentra mi dueño</h1>
+	<label><input type="radio" ng-model="idGroup" value="160626413991175"> info. ing. de sistemas y computación (I.S.C)</label> 
+	<br>
+	<label><input type="radio" ng-model="idGroup" value="5347104545"> UPTC</label>
+	<br>
+	<br>
+	<input type="text" ng-model="img">
+	<button ng-click="main()">Detectar</button>
+	<br>
+	<br>
+	<img ng-src="{{l}}" width="300px" height="400px"/>
+	<div>
+		<h1>Clasificador: </h1>
+		<br>
+		{{classifier}}
+		<br>
+		<h1>Texto Microsoft:</h1>
+		<br>
+		{{txtMicrosoft}}	
+		<br>
+		<h1>Texto filtrado:</h1>
+		<br>
+		{{filterMicrosoft}}
+		<h1>Facebook:</h1>
+		<br>
+		<p>Estado: <strong>{{facebook}}</strong></p>
+		<p>Numero de miembros: {{members.length}}</p>
+		<p>Nombre: {{name}}</p>
+		<p>Combinaciones de nombre: {{combinationsName}}</p>			
+		<p>Candidatos: {{candidates.length}}</p>
+		<ul>
+			<li ng-repeat="candidate in candidates track by $index">
+				[{{$index + 1}}] {{candidate.name}} <strong>[{{candidate.state}}]</strong>
+				<br>
+				<img ng-src="{{candidate.picture.data.url}}"/>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>
