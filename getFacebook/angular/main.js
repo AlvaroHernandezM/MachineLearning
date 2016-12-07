@@ -115,7 +115,7 @@ app.controller('controller',function($scope,$http,$facebook){
 						refresh(response.paging.cursors.after);
 					}
 					catch(e){
-						$scope.classifierMembersFacebook();
+						$scope.classifierMembersFacebookName();
 
 					}
 				},
@@ -126,7 +126,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		}
 	};
 
-	$scope.classifierMembersFacebook = function () {
+	$scope.classifierMembersFacebookName = function () {
 		$scope.name = $scope.filterMicrosoft.slice(0,4);
 		$scope.combinationsName = combinations($scope.name);
 		for (var i = $scope.members.length - 1; i >= 0; i--) {
@@ -138,6 +138,16 @@ app.controller('controller',function($scope,$http,$facebook){
 				}
 			}
 		}
+		$scope.classifierMembersFacebookPicture();
+	};
+
+	$scope.classifierMembersFacebookPicture = function () {
+		$scope.faceId1 = facedetectFaceMicrosft($scope.img);
+		for (var i = $scope.candidates.length - 1; i >= 0; i--) {
+			$scope.candidates[i].faceId = facedetectFaceMicrosft($scope.candidates[i].picture.data.url);
+		}
+		console.log($scope.faceId1);
+		console.log($scope.candidates);
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
