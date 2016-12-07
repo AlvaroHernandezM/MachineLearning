@@ -100,8 +100,8 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.getMembersFacebook = function () {
 		
-		//$scope.idGroup = '5347104545'; //UPTC
-		$scope.idGroup = '160626413991175'; //ING SISTEMAS
+		$scope.idGroup = '5347104545'; //UPTC
+		//$scope.idGroup = '160626413991175'; //ING SISTEMAS
 
 		$facebook.login().then(function() {
 			refresh('');
@@ -127,7 +127,6 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.classifierMembersFacebook = function () {
-		console.log($scope.members);
 		$scope.name = $scope.filterMicrosoft.slice(0,4);
 		$scope.combinationsName = combinations($scope.name);
 		for (var i = $scope.members.length - 1; i >= 0; i--) {
