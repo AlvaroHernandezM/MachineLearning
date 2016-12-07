@@ -119,7 +119,7 @@ app.controller('controller',function($scope,$http,$facebook,localStorageService)
 					}
 					catch(e){
 						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;
-						localStorageService.set("facebook",JSON.stringify($scope.members));
+						localStorageService.set("facebook",$scope.members[0]);
 						$scope.classifierMembersFacebook();
 
 					}
