@@ -174,7 +174,7 @@ app.controller('controller',function($scope,$http,$facebook){
 					delete $scope.candidates[index];
 				}else{
 					$scope.candidates[index].faceId = data[0].faceId;
-					$scope.verifyFaceMicrosft($scope.faceId1, $scope.candidates[index].faceId);
+					$scope.verifyFaceMicrosft($scope.faceId1, index);
 				}
 			}
 		})
@@ -183,10 +183,10 @@ app.controller('controller',function($scope,$http,$facebook){
 		})
 	};
 
-	$scope.verifyFaceMicrosft = function (faceId1, faceId2) {
+	$scope.verifyFaceMicrosft = function (faceId1, index) {
 		var data = {
 			faceId1: faceId1,
-			faceId2: faceId2
+			faceId2: $scope.candidates[index].faceId
 		}
 
 		var config = {
@@ -199,6 +199,9 @@ app.controller('controller',function($scope,$http,$facebook){
 		$http.post('https://api.projectoxford.ai/face/v1.0/verify?', data, config)
 		.success(function(data){
 			console.log(data);
+			if (!data.isIdentical) {
+				delete $scope.candidates[index];
+			}
 		})
 		.error(function(err){
 			console.log(err);
