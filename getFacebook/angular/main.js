@@ -171,7 +171,7 @@ app.controller('controller',function($scope,$http,$facebook){
 				$scope.detectFaceCandidates();
 			}else{
 				if (data.length == 0) {
-					delete $scope.candidates[index];
+					$scope.candidates.splice(index,index);
 				}else{
 					$scope.candidates[index].faceId = data[0].faceId;
 					$scope.verifyFaceMicrosft($scope.faceId1, $scope.candidates[index].faceId);
@@ -184,7 +184,7 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.verifyFaceMicrosft = function (faceId1, faceId2) {
-		console.log(faceId + " - " + faceId2);
+		console.log(faceId1 + " - " + faceId2);
 	};	
 	
 });
