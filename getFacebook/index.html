@@ -1,43 +1,48 @@
 <!DOCTYPE HTML>
 <html lang="es" ng-app="mainModule">
-	<head>
-		<title>Clasificacion persona</title>
-		<meta charset="utf-8" />
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-		<script src="https://rawgithub.com/GoDisco/ngFacebook/master/ngFacebook.js"></script>
+<head>
+	<title>Clasificacion persona</title>
+	<meta charset="utf-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="https://rawgithub.com/GoDisco/ngFacebook/master/ngFacebook.js"></script>
 
-		<script src="angular/main.js"></script>
+	<script src="angular/main.js"></script>
 
-		<script src="angular/encodeURL.js"></script>
-		<script src="angular/combinations.js"></script>
-		<script src="angular/cleanString.js"></script>
-		<script src="angular/facebook.js"></script>
-	</head>
-	<body ng-controller="controller">
+	<script src="angular/encodeURL.js"></script>
+	<script src="angular/combinations.js"></script>
+	<script src="angular/cleanString.js"></script>
+	<script src="angular/facebook.js"></script>
+</head>
+<body ng-controller="controller">
 	<input type="text" ng-model="img">
 	<button ng-click="main()">Detectar</button>
 	<div>
-			<h1>Clasificador: </h1>
-			<br>
-			{{classifier}}
-			<br>
-			<h1>Texto Microsoft:</h1>
-			<br>
-			{{txtMicrosoft}}	
-			<br>
-			<h1>Texto filtrado:</h1>
-			<br>
-			{{filterMicrosoft}}
-			<h1>Facebook:</h1>
-			<br>
-			<p>Numero de miembros: {{members.length}}</p>
-			<p>Nombre: {{name}}</p>
-			<p>Combinaciones de nombre: {{combinationsName}}</p>			
-			<p>Candidatos: {{candidates}}</p>
-			<p>Numero de candidatos: {{candidates.length}}</p>
+		<h1>Clasificador: </h1>
+		<br>
+		{{classifier}}
+		<br>
+		<h1>Texto Microsoft:</h1>
+		<br>
+		{{txtMicrosoft}}	
+		<br>
+		<h1>Texto filtrado:</h1>
+		<br>
+		{{filterMicrosoft}}
+		<h1>Facebook:</h1>
+		<br>
+		<p>Numero de miembros: {{members.length}}</p>
+		<p>Nombre: {{name}}</p>
+		<p>Combinaciones de nombre: {{combinationsName}}</p>			
+		<ul>
+			<li ng-repeat="candidate in candidates">
+				[{{$index + 1}}] {{candidate.name}}
+				<img ng-src="{{candidate.picture.data.url}}"/>
+			</li>
+		</ul>
+		<p>Numero de candidatos: {{candidates.length}}</p>
 	</div>
 
-		<img ng-src="{{l}}" alt="Description" />
-	  
-	</body>
+	<img ng-src="{{l}}"/>
+
+</body>
 </html>
