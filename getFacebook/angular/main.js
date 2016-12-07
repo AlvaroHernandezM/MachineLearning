@@ -22,7 +22,6 @@ app.controller('controller',function($scope,$http,$facebook){
 		$scope.classifier='cargando imagen....';
 		$http.post('https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=' + apiKeyWatson + '&url=' + encodeURL(img) + '&owners='+owners+'&threshold='+ threshold +'&version='+ version).
 		success(function(data){
-			console.log(data);
 			if(data.images[0].classifiers.length>0){ //verificando que encontro clases
 				$scope.classifier=' se han encontrado: '+data.images[0].classifiers+' clases';
 				$classes = data.images[0].classifiers[0].classes;
