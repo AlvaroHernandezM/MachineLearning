@@ -33,6 +33,7 @@
 		<p>Numero de miembros: {{members.length}}</p>
 		<p>Nombre: {{name}}</p>
 		<p>Combinaciones de nombre: {{combinationsName}}</p>			
+		<p>Candidatos: {{candidates.length}}</p>
 		<ul>
 			<li ng-repeat="candidate in candidates">
 				[{{$index + 1}}] {{candidate.name}}
@@ -40,7 +41,6 @@
 				<img ng-src="{{candidate.picture.data.url}}"/>
 			</li>
 		</ul>
-		<p>Numero de candidatos: {{candidates.length}}</p>
 	</div>
 
 	<img ng-src="{{l}}"/>
