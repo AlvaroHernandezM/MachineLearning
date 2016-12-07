@@ -127,8 +127,8 @@ app.controller('controller',function($scope,$http,$facebook){
 		console.log($scope.members);
 		$scope.name = $scope.filterMicrosoft.slice(0,4);
 		$scope.combinationsNames = combinations($scope.name);
-		for (person in members) {
-			for (name in combinationsNames) {
+		for (person in $scope.members) {
+			for (name in $scope.combinationsNames) {
 				if (person.name == name) {
 					$scope.posiblePerson.push(person);
 				}
