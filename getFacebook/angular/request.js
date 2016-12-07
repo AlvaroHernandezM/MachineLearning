@@ -101,6 +101,8 @@ app.controller('controller',function($scope,$http,$facebook){
 		$scope.numMembersFacebook = 'Obteniendo miembros facebook...';
 		if (localStorageService.get("facebook")){
 			$scope.members = localStorageService.get("facebook");
+			$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;
+			$scope.classifierMembersFacebook();
 		}
 		else{
 			$facebook.login().then(function() {
