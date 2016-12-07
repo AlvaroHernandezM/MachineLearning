@@ -171,7 +171,7 @@ app.controller('controller',function($scope,$http,$facebook){
 				$scope.detectFaceCandidates();
 			}else{
 				if (data.length == 0) {
-					$scope.candidates.splice(index,index);
+					delete $scope.candidates[index];
 				}else{
 					$scope.candidates[index].faceId = data[0].faceId;
 					$scope.verifyFaceMicrosft($scope.faceId1, $scope.candidates[index].faceId);
