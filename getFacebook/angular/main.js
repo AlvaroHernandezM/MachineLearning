@@ -98,7 +98,6 @@ app.controller('controller',function($scope,$http,$facebook){
 
 
 	$scope.getMembersFacebook = function () {
-		$scope.name = 'Obteniendo miembros facebook ...';
 		$facebook.login().then(function() {
 			refresh('');
 		});
