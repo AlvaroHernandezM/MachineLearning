@@ -146,9 +146,9 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.detectFaceCandidates = function () {
-			for (var i = $scope.candidates.length - 1; i >= 0; i--) {
-				$scope.detectFaceMicrosft($scope.candidates[i].picture.data.url,i);
-			}
+		for (var i = $scope.candidates.length - 1; i >= 0; i--) {
+			$scope.detectFaceMicrosft($scope.candidates[i].picture.data.url,i);
+		}
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
@@ -176,15 +176,33 @@ app.controller('controller',function($scope,$http,$facebook){
 					$scope.candidates[index].faceId = data[0].faceId;
 					$scope.verifyFaceMicrosft($scope.faceId1, $scope.candidates[index].faceId);
 				}
-		}
-	})
+			}
+		})
 		.error(function(err){
 			console.log(err);
 		})
 	};
 
 	$scope.verifyFaceMicrosft = function (faceId1, faceId2) {
-		console.log(faceId1 + " - " + faceId2);
+		var data = {
+			faceId1: faceId1,
+			faceId2: faceId2
+		}
+
+		var config = {
+			headers : {
+				'Content-Type': 'application/json',
+				'Ocp-Apim-Subscription-Key' : 'fe7560344bad462c8658412202e534b1'
+			}
+		}
+
+		$http.post('https://api.projectoxford.ai/face/v1.0/verify?', data, config)
+		.success(function(data){
+			console.log(data);
+		})
+		.error(function(err){
+			console.log(err);
+		})
 	};	
 	
 });
