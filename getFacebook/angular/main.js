@@ -143,11 +143,12 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.classifierMembersFacebookPicture = function () {
 		$scope.detectFaceMicrosft($scope.img,-1);
-		function detectFaceCandidates() {
+	};
+
+	$scope.detectFaceCandidates = function () {
 			for (var i = $scope.candidates.length - 1; i >= 0; i--) {
 				$scope.detectFaceMicrosft($scope.candidates[i].picture.data.url,i);
 			}
-		}
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
@@ -167,7 +168,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		.success(function(data){
 			if (index < 0) {
 				$scope.faceId1 = data[0].faceId;
-				detectFaceCandidates();
+				$scope.detectFaceCandidates();
 			}else{
 				if (data.length == 0) {
 					$scope.candidates.splice(index,index);
