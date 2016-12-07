@@ -99,12 +99,16 @@ app.controller('controller',function($scope,$http,$facebook){
 
 
 	$scope.getMembersFacebook = function () {
+		
+		//$scope.idGroup = '5347104545'; //UPTC
+		$scope.idGroup = '160626413991175'; //ING SISTEMAS
+
 		$facebook.login().then(function() {
 			refresh('');
 		});
 
 		function refresh(after) {
-			$facebook.api('/5347104545/members','GET',{'fields':'name,link,picture.type(large)','limit':'1000','after':after}).then( 
+			$facebook.api('/'+$scope.idGroup+'/members','GET',{'fields':'name,link,picture.type(large)','limit':'1000','after':after}).then( 
 				function(response) {
 					$scope.members = $scope.members.concat(response.data);
 					try {
@@ -126,8 +130,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		console.log($scope.members);
 		$scope.name = $scope.filterMicrosoft.slice(0,4);
 		$scope.combinationsName = combinations($scope.name);
-		console.log($scope.members[0].name.toLowerCase() +" == "+$scope.combinationsName[0]);
-		/*for (var i = $scope.members.length - 1; i >= 0; i--) {
+		for (var i = $scope.members.length - 1; i >= 0; i--) {
 			for (var j = $scope.combinationsName.length - 1; j >= 0; j--) {
 				if($scope.members[i].name.toLowerCase() == $scope.combinationsName[j])
 				{
@@ -135,7 +138,7 @@ app.controller('controller',function($scope,$http,$facebook){
 					break;
 				}
 			}
-		}*/
+		}
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
