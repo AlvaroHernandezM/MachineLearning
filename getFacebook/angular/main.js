@@ -132,6 +132,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		$scope.combinationsName = combinations($scope.name);
 		for (var i = $scope.members.length - 1; i >= 0; i--) {
 			for (var j = $scope.combinationsName.length - 1; j >= 0; j--) {
+				console.log($scope.members[i].name.toLowerCase());
 				if($scope.members[i].name.toLowerCase() == $scope.combinationsName[j])
 				{
 					$scope.candidates.push($scope.members[i]);
