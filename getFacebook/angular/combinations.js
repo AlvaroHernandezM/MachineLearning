@@ -16,5 +16,6 @@ function combinations(array) {
         }
     }
 
-    return combi.join("\n");
+    //return combi.join("\n");
+    return combi;
 }
