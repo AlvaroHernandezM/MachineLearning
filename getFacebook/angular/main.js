@@ -133,6 +133,7 @@ app.controller('controller',function($scope,$http,$facebook){
 			for (var j = $scope.combinationsName.length - 1; j >= 0; j--) {
 				if(cleanString($scope.members[i].name) == cleanString($scope.combinationsName[j]))
 				{
+					$scope.members[i].state = 'Activo';
 					$scope.candidates.push($scope.members[i]);
 					break;
 				}
@@ -176,7 +177,7 @@ app.controller('controller',function($scope,$http,$facebook){
 				$scope.detectFaceCandidates();
 			}else{
 				if (data.length == 0) {
-					delete $scope.candidates[index];
+					$scope.candidates[index].state = 'Eliminado';
 				}else{
 					$scope.candidates[index].faceId = data[0].faceId;
 					$scope.verifyFaceMicrosft($scope.faceId1, index);
@@ -204,7 +205,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		$http.post('https://api.projectoxford.ai/face/v1.0/verify?', data, config)
 		.success(function(data){
 			if (!data.isIdentical) {
-				delete $scope.candidates[index];
+				$scope.candidates[index].state = 'Eliminado';
 			}
 			else{
 				$scope.facebook = 'Enviando mensaje a ' + $scope.candidates[index].name;
