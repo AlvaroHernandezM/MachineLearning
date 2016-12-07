@@ -1,4 +1,4 @@
-var app = angular.module('mainModule', ['ngFacebook']);
+var app = angular.module('mainModule', ['ngFacebook', 'LocalStorageModule']);
 
 app.controller('controller',function($scope,$http,$facebook){
 
@@ -8,9 +8,9 @@ app.controller('controller',function($scope,$http,$facebook){
 	//Metodo principal
 	$scope.main = function () {
 	    //llamando a Watson
-		$scope.classifierWatson($scope.img);
-		$scope.l = $scope.img;
-	
+	    $scope.classifierWatson($scope.img);
+	    $scope.l = $scope.img;
+
 	};
 
 	$scope.classifierWatson = function (img){
@@ -58,7 +58,6 @@ app.controller('controller',function($scope,$http,$facebook){
 		$scope.txtMicrosoft='extrayendo texto...';
 		$http.post('https://api.projectoxford.ai/vision/v1.0/ocr?' + param, data, config)
 		.success(function(data){
-			console.log(data);
 			var regions = data.regions;
 			if(regions.length>0){ //verificando que existen regiones con texto y monnstrandolas
 				$scope.lines = data.regions[0].lines;
@@ -100,10 +99,15 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.getMembersFacebook = function () {
 		$scope.numMembersFacebook = 'Obteniendo miembros facebook...';
-		$facebook.login().then(function() {
-			refresh('');
-		});
-
+		if (localStorageService.get("facebook")){
+			$scope.members = localStorageService.get("facebook");
+		}
+		else{
+			$facebook.login().then(function() {
+				refresh('');
+			});
+		}
+		
 		function refresh(after) {
 			$facebook.api('/5347104545/members','GET',{'fields':'name,link,picture.type(large)','limit':'1000','after':after}).then( 
 				function(response) {
@@ -112,7 +116,8 @@ app.controller('controller',function($scope,$http,$facebook){
 						refresh(response.paging.cursors.after);
 					}
 					catch(e){
-						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;						
+						$scope.numMembersFacebook = 'Total miembros: ' + $scope.members.length;
+						localStorageService.set("facebook",$scope.members);						
 						$scope.classifierMembersFacebook();
 
 					}
@@ -126,7 +131,7 @@ app.controller('controller',function($scope,$http,$facebook){
 
 	$scope.classifierMembersFacebook = function () {
 		console.log($scope.members);
-		console.log($scope.filterMicrosoft.sllice(-1));
+		console.log($scope.filterMicrosoft.slice(-1));
 	};
 
 	//Retorna el id de la imagen, si retorna vacio no pertenece a un rostro.
