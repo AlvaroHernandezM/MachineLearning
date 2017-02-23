@@ -14,7 +14,7 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.classifierWatson = function (img){
-		var apiKeyWatson = '37ff1e95c9da3f5e5161d6f49b0139469c087f8d';
+		var apiKeyWatson = '9a33a0bfecf771e2f4f297d93f9241d78a1a065a';
 		var threshold = '0.1'; //puntaje minimo para traer la respuesta
 		var owners = 'me'; //utiliza los clasificadores de
 		var version = '2016-05-20';
