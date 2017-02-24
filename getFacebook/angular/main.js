@@ -14,7 +14,7 @@ app.controller('controller',function($scope,$http,$facebook){
 	};
 
 	$scope.classifierWatson = function (img){
-		var apiKeyWatson = '37ff1e95c9da3f5e5161d6f49b0139469c087f8d';
+		var apiKeyWatson = '9a33a0bfecf771e2f4f297d93f9241d78a1a065a';
 		var threshold = '0.1'; //puntaje minimo para traer la respuesta
 		var owners = 'me'; //utiliza los clasificadores de
 		var version = '2016-05-20';
@@ -52,7 +52,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		var config = {
 			headers : {
 				'Content-Type': 'application/json',
-				'Ocp-Apim-Subscription-Key' : '7c955f15783a4000afdd117635ae6b19'
+				'Ocp-Apim-Subscription-Key' : '2821aa93acd749ba8a7bc585ed2f10dd'
 			}
 		}
 		$scope.txtMicrosoft='extrayendo texto...';
@@ -166,7 +166,11 @@ app.controller('controller',function($scope,$http,$facebook){
 		var config = {
 			headers : {
 				'Content-Type': 'application/json',
+<<<<<<< HEAD
 				'Ocp-Apim-Subscription-Key' : '07c4d54cefb847c999fde07d0ef6ca9e'
+=======
+				'Ocp-Apim-Subscription-Key' : '2821aa93acd749ba8a7bc585ed2f10dd'
+>>>>>>> master
 			}
 		}
 
