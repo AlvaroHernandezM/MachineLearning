@@ -166,11 +166,7 @@ app.controller('controller',function($scope,$http,$facebook){
 		var config = {
 			headers : {
 				'Content-Type': 'application/json',
-<<<<<<< HEAD
-				'Ocp-Apim-Subscription-Key' : '07c4d54cefb847c999fde07d0ef6ca9e'
-=======
 				'Ocp-Apim-Subscription-Key' : '2821aa93acd749ba8a7bc585ed2f10dd'
->>>>>>> master
 			}
 		}
 
